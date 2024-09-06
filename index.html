@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Skill Filter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        label {
+            font-weight: bold;
+        }
+        input, button {
+            padding: 8px;
+            margin: 8px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Filter Profiles by Skill</h1>
+
+    <label for="filter-skill">Enter a skill to filter profiles:</label>
+    <input type="text" id="filter-skill" placeholder="e.g., JavaScript">
+    <button onclick="filterProfiles()">Filter</button>
+
+    <h2>Matching Profiles:</h2>
+    <ul id="profile-list"></ul>
+
+    <script>
+        const profiles = [
+            { name: 'Alice', skills: ['javascript', 'react', 'node.js'] },
+            { name: 'Bob', skills: ['python', 'django', 'flask'] },
+            { name: 'Charlie', skills: ['java', 'spring', 'hibernate'] },
+            { name: 'Diana', skills: ['javascript', 'angular', 'css'] }
+        ];
+
+        function filterProfiles() {
+            const filterSkill = document.getElementById('filter-skill').value.trim().toLowerCase();
+            const profileList = document.getElementById('profile-list');
+
+            profileList.innerHTML = '';
+
+            const matchingProfiles = profiles.filter(profile => 
+                profile.skills.includes(filterSkill)
+            );
+
+            if (matchingProfiles.length > 0) {
+                matchingProfiles.forEach(profile => {
+                    const li = document.createElement('li');
+                    li.textContent = `Name: ${profile.name}, Skills: ${profile.skills.join(', ')}`;
+                    profileList.appendChild(li);
+                });
+            } else {
+                profileList.textContent = 'No matching profiles found.';
+            }
+        }
+    </script>
+
+</body>
+</html>
