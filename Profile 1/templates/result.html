@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Filtered Candidates</h1>
+    <ul>
+        {% for candidate in matched_candidates %}
+            <li>{{ candidate[0] }} - Skills: {{ candidate[1] }} - Match: {{ candidate[2] }}%</li>
+        {% endfor %}
+    </ul>
+    <a href="{{ url_for('candidate_dashboard') }}">Back to Dashboard</a>
+{% endblock %}

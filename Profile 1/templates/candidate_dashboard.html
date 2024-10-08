@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Candidate Dashboard</h1>
+    <form method="POST" action="{{ url_for('upload_resume') }}" enctype="multipart/form-data">
+        <label for="resume">Upload your Resume (PDF):</label>
+        <input type="file" name="resume" required>
+        <button type="submit">Upload</button>
+    </form>
+    <h2>Filter Candidates</h2>
+    <form method="POST" action="{{ url_for('filter_candidates_route') }}">
+        <label for="job_description">Job Description:</label>
+        <textarea name="job_description" required></textarea>
+        <button type="submit">Filter Candidates</button>
+    </form>
+{% endblock %}

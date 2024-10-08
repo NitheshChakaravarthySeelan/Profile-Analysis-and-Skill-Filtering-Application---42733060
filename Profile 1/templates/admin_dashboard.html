@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Admin Dashboard</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Skills</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for profile in profiles %}
+                <tr>
+                    <td>{{ profile[0] }}</td>
+                    <td>{{ profile[1] }}</td>
+                    <td>{{ profile[2] }}</td>
+                    <td>
+                        <a href="{{ url_for('edit_profile_route', profile_id=profile[0]) }}">Edit</a>
+                        <form action="{{ url_for('delete_profile_route', profile_id=profile[0]) }}" method="POST" style="display:inline;">
+                            <button type="submit">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
